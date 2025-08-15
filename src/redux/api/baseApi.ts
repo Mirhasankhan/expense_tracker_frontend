@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4004/api/v1",
+    baseUrl: "https://expense-tracker-backend-sepia.vercel.app/api/v1",
     prepareHeaders: (headers) => {
       const {token} = JWTDecode()
       if (token) {
