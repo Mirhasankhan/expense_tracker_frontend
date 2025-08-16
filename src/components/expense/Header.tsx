@@ -24,12 +24,12 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-between items-center">
-      <div className="flex items-center gap-1">
-        <SiPivotaltracker></SiPivotaltracker>
+    <div className="flex justify-between mt-6 items-center">
+      <div className="flex items-center gap-2">
+        <SiPivotaltracker className="text-primary" size={40}></SiPivotaltracker>
         <div>
           <h1 className="text-xl font-medium">Expense Tracker</h1>
-          <small>Manage your personal finances with eas</small>
+          <small>Manage your personal finances</small>
         </div>
       </div>
       {!email ? (
