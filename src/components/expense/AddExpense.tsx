@@ -3,12 +3,11 @@ import { useCreateExpenseMutation } from "@/redux/features/expense/expense.api";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
-type ExpenseFormData = {
+export type ExpenseFormData = {
   title: string;
   amount: number;
   category: string;
   date: string;
-  description: string;
 };
 
 const AddExpenseForm = () => {
@@ -28,13 +27,13 @@ const AddExpenseForm = () => {
     }
   };
 
-  const inputClass =
+   const inputClass =
     "w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-700 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-primary focus:outline-none transition";
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-2xl mx-auto p-8 bg-white shadow-lg rounded-2xl space-y-6"
+      className="max-w-2xl mx-auto p-8 mt-12 bg-white shadow-lg rounded-2xl space-y-6"
     >
       <h2 className="text-2xl font-bold text-center text-gray-800">
         Add Expense
@@ -62,6 +61,7 @@ const AddExpenseForm = () => {
             {...register("amount", {
               required: "Amount is required",
               min: { value: 1, message: "Amount must be at least 1" },
+              valueAsNumber: true,
             })}
             className={inputClass}
           />
@@ -84,7 +84,7 @@ const AddExpenseForm = () => {
             <option value="Food">Food</option>
             <option value="Shopping">Shopping</option>
             <option value="Transfort">Transfort</option>
-            <option value="other">Other</option>
+            <option value="Others">Others</option>
           </select>
           {errors.category && (
             <p className="text-red-500 text-sm mt-1">
@@ -106,19 +106,8 @@ const AddExpenseForm = () => {
         </div>
       </div>
 
-      <div>
-        <label className="block text-gray-700 font-medium mb-2">
-          Description
-        </label>
-        <textarea
-          placeholder="Write a short note about this expense"
-          {...register("description")}
-          className={inputClass}
-          rows={3}
-        />
-      </div>
-
       <button
+        disabled={isLoading}
         type="submit"
         className="w-full bg-primary/90 text-white py-3 rounded-xl font-semibold shadow-md hover:bg-primary hover:shadow-lg transition"
       >
